@@ -1,0 +1,14 @@
+#!/bin/sh
+# A simple utility to fix unresponsive trackpads on Lenovo IdeaPad 3 (15IIL05 Model)
+
+G=/etc/default/grub;sudo cp $G{,.`date +%F.%s`} # add "i8042.nopnp=1 pci=nocrs"
+
+sed 's/i8042.nopnp=1 pci=nocrs//' $G|tr -s ' '|sudo dd of=$G 2>/dev/null
+sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="/&i8042.nopnp=1 pci=nocrs /' $G && sudo update-grub
+
+
+cat << Msg
+
+ALL FINISHED! Reboot your laptop to enable the configuration.
+
+Msg
