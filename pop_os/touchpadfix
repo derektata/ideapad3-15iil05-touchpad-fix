@@ -1,7 +1,7 @@
 #!/bin/sh
 # A simple script to fix unresponsive trackpads on Lenovo IdeaPad 3 (15IIL05 Model)
 
-sudo kernelstub -o "i8042.nopnp=1 pci=nocrs"
+sudo kernelstub -a "i8042.nopnp=1 pci=nocrs"
 
 cat << Msg
 
